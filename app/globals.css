@@ -1,0 +1,121 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Core palette: deep black, off-white, Hungarian red, warm grey */
+  --background: oklch(0.08 0 0);
+  --foreground: oklch(0.96 0 0);
+  --card: oklch(0.11 0 0);
+  --card-foreground: oklch(0.96 0 0);
+  --popover: oklch(0.11 0 0);
+  --popover-foreground: oklch(0.96 0 0);
+  --primary: oklch(0.55 0.22 25);
+  --primary-foreground: oklch(0.96 0 0);
+  --secondary: oklch(0.14 0 0);
+  --secondary-foreground: oklch(0.96 0 0);
+  --muted: oklch(0.18 0 0);
+  --muted-foreground: oklch(0.55 0 0);
+  --accent: oklch(0.55 0.22 25);
+  --accent-foreground: oklch(0.96 0 0);
+  --destructive: oklch(0.55 0.22 25);
+  --destructive-foreground: oklch(0.96 0 0);
+  --border: oklch(0.2 0 0);
+  --input: oklch(0.14 0 0);
+  --ring: oklch(0.55 0.22 25);
+  --radius: 0rem;
+
+  /* Custom tokens */
+  --hu-red: oklch(0.52 0.22 25);
+  --hu-green: oklch(0.42 0.13 152);
+  --hu-off-white: oklch(0.94 0 0);
+  --hu-grey: oklch(0.28 0 0);
+  --hu-line: oklch(0.22 0 0);
+}
+
+@theme inline {
+  --font-sans: var(--font-barlow), 'Barlow', system-ui, sans-serif;
+  --font-display: var(--font-barlow-condensed), 'Barlow Condensed', system-ui, sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: 0rem;
+  --radius-md: 0rem;
+  --radius-lg: 0rem;
+  --radius-xl: 0rem;
+  --color-hu-red: var(--hu-red);
+  --color-hu-green: var(--hu-green);
+  --color-hu-off-white: var(--hu-off-white);
+  --color-hu-grey: var(--hu-grey);
+  --color-hu-line: var(--hu-line);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    box-sizing: border-box;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  ::selection {
+    background: oklch(0.55 0.22 25 / 0.4);
+  }
+}
+
+/* Track line animation */
+@keyframes track-slide {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100vw); }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.7s ease forwards;
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 2px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--hu-red);
+}
