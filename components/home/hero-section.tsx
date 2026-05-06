@@ -19,7 +19,7 @@ export function HeroSection() {
   }, [])
 
   return (
-    <section className="relative min-h-screen flex flex-col overflow-hidden" aria-label="Főoldal hős szekció">
+    <section className="relative overflow-hidden" style={{ minHeight: '80vh' }} aria-label="Főoldal hős szekció">
       {/* Background image */}
       <div className="absolute inset-0 z-0">
         <img
@@ -27,8 +27,8 @@ export function HeroSection() {
           alt="Magyar atlétika - futó versenyző"
           className="w-full h-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/75 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/30" />
       </div>
 
       {/* Track lines decoration */}
@@ -43,7 +43,7 @@ export function HeroSection() {
       </div>
 
       {/* Content */}
-      <div className="relative z-20 max-w-[1400px] mx-auto px-6 lg:px-12 flex flex-col justify-end pb-24 pt-40 min-h-screen">
+      <div className="relative z-20 max-w-[1400px] mx-auto px-6 lg:px-12 flex flex-col justify-end pb-14 pt-32 min-h-[80vh]">
         <div className="max-w-4xl">
           {/* Kicker */}
           <div className="flex items-center gap-4 mb-8">
@@ -60,7 +60,7 @@ export function HeroSection() {
           {/* Main heading */}
           <h1
             ref={headingRef}
-            className="font-display font-900 text-[clamp(4rem,12vw,11rem)] leading-[0.9] tracking-tight uppercase text-foreground mb-8"
+            className="font-display font-900 text-[clamp(3rem,8vw,8rem)] leading-[0.9] tracking-tight uppercase text-foreground mb-6"
           >
             <span className="block">KÖNNYŰ</span>
             <span className="block text-hu-red">ATLÉTIKA</span>
@@ -68,7 +68,7 @@ export function HeroSection() {
           </h1>
 
           {/* Subtext */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-end gap-8 mt-10">
+          <div className="flex flex-col sm:flex-row items-start sm:items-end gap-8 mt-6">
             <p className="font-sans text-base font-400 text-muted-foreground leading-relaxed max-w-sm">
               Magyarország átfogó atlétikai információs portálja. Technika, edzéstervek, történelem és az összes atlétikai diszciplína részletes bemutatása.
             </p>
@@ -90,7 +90,7 @@ export function HeroSection() {
         </div>
 
         {/* Bottom stat strip */}
-        <div className="mt-16 pt-8 border-t border-hu-line grid grid-cols-2 sm:grid-cols-4 gap-6">
+        <div className="mt-10 pt-6 border-t border-hu-line grid grid-cols-2 sm:grid-cols-4 gap-6">
           {[
             { num: '47', label: 'Atlétikai diszciplína' },
             { num: '1896', label: 'Olimpiai kezdetek' },
