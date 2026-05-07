@@ -1,19 +1,29 @@
 import type { Metadata } from 'next'
-import { notFound } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 import Link from 'next/link'
 import { blogPosts } from '@/lib/blog-data'
 
 interface Props {
-  params: Promise<{ slug: string }>
+  params: { slug: string }
 }
 
 export async function generateStaticParams() {
   return blogPosts.map((post) => ({ slug: post.slug }))
 }
 
+function normalizeSlug(input: string) {
+  // Normalize typical “looks the same but isn't” and strip accents for robust routing.
+  return input
+    .replace(/[\u0430]/g, 'a') // Cyrillic 'а'
+    .replace(/[\u0441]/g, 'c') // Cyrillic 'с'
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '') // diacritics
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params
-  const post = blogPosts.find((p) => p.slug === slug)
+  const { slug } = params
+  const post = blogPosts.find((p) => p.slug === slug) ??
+    blogPosts.find((p) => normalizeSlug(p.slug) === normalizeSlug(slug))
   if (!post) return {}
   return {
     title: `${post.title} | Hungary Athletics`,
@@ -70,11 +80,19 @@ function renderContent(content: string) {
 }
 
 export default async function BlogArticlePage({ params }: Props) {
-  const { slug } = await params
-  const post = blogPosts.find((p) => p.slug === slug)
+  const { slug } = params
+  const post =
+    blogPosts.find((p) => p.slug === slug) ??
+    blogPosts.find((p) => normalizeSlug(p.slug) === normalizeSlug(slug))
+
   if (!post) notFound()
 
-  const currentIndex = blogPosts.findIndex((p) => p.slug === slug)
+  // If user hits an old/non-canonical slug, redirect to the canonical one.
+  if (post.slug !== slug) {
+    redirect(`/blog/${post.slug}`)
+  }
+
+  const currentIndex = blogPosts.findIndex((p) => p.slug === post.slug)
   const prevPost = currentIndex > 0 ? blogPosts[currentIndex - 1] : null
   const nextPost = currentIndex < blogPosts.length - 1 ? blogPosts[currentIndex + 1] : null
 

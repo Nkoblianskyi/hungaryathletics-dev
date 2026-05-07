@@ -45,7 +45,7 @@ A sprintedzés intenzív és nagy terhelést jelent az idegrendszer és a mozgá
 A hosszú távú fejlődéshez elengedhetetlen az edzések rendszeres értékelése, a technika videóelemzése és a személyre szabott terv folyamatos felülvizsgálata.`,
   },
   {
-    slug: 'magasugrás-fosbury',
+    slug: 'magasugras-fosbury',
     title: 'A Fosbury-Flop Titka',
     category: 'Ugrás',
     image: '/images/blog-2.jpg',
@@ -295,7 +295,7 @@ A tízpróba-edzés rendkívül összetett feladat, hiszen tíz különböző ve
 A tízpróbás atléta egyik legfontosabb képessége a mentális rugalmasság. Egy rossz versenyszám után azonnal "újra kell indulni" és a következő versenyszámra koncentrálni. Az érzelmi szabályozás és a reziliencia ugyanannyira fontos, mint a fizikai felkészülés.`,
   },
   {
-    slug: 'gyaloglас-technika-es-szabalyok',
+    slug: 'gyaloglas-technika-es-szabalyok',
     title: 'Atlétikai Gyaloglás: Szabályok és Technika',
     category: 'Gyaloglás',
     image: '/images/blog-2.jpg',
@@ -323,7 +323,7 @@ A gyaloglóversenyeket 10, 20, 35 és 50 kilométeren rendezik. Az olimpián 20 
 A gyaloglás sajátos technikája speciális sérülési mintázatot is okoz. A csípő, a térd és a boka az érintett területek, ahol a gyalogló-specifikus sérülések előfordulnak. A nyújtás, az erőfejlesztés és a megfelelő regeneráció nélkülözhetetlen a hosszú atlétikai karrierhez.`,
   },
   {
-    slug: 'terematlétika-sajatossagai',
+    slug: 'terematletika-sajatossagai',
     title: 'Terematlétika: Téli Versenyzés',
     category: 'Terem',
     image: '/images/blog-3.jpg',
