@@ -4,15 +4,16 @@ import Link from 'next/link'
 import { blogPosts } from '@/lib/blog-data'
 
 interface Props {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }
 
 export async function generateStaticParams() {
   return blogPosts.map((post) => ({ slug: post.slug }))
 }
 
-function normalizeSlug(input: string) {
+function normalizeSlug(input: unknown) {
   // Normalize typical “looks the same but isn't” and strip accents for robust routing.
+  if (typeof input !== 'string') return ''
   return input
     .replace(/[\u0430]/g, 'a') // Cyrillic 'а'
     .replace(/[\u0441]/g, 'c') // Cyrillic 'с'
@@ -21,7 +22,7 @@ function normalizeSlug(input: string) {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = params
+  const { slug } = await params
   const post = blogPosts.find((p) => p.slug === slug) ??
     blogPosts.find((p) => normalizeSlug(p.slug) === normalizeSlug(slug))
   if (!post) return {}
@@ -80,7 +81,7 @@ function renderContent(content: string) {
 }
 
 export default async function BlogArticlePage({ params }: Props) {
-  const { slug } = params
+  const { slug } = await params
   const post =
     blogPosts.find((p) => p.slug === slug) ??
     blogPosts.find((p) => normalizeSlug(p.slug) === normalizeSlug(slug))
